@@ -1,0 +1,76 @@
+﻿@using System.Data
+@model DataSet
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ForwardUser</title>
+    <link href="~/css/Login.css" rel="stylesheet" />
+    <style>
+        .table {
+            margin-top: -632px;
+            /* color: #212529; */
+            margin-left: 232px;
+            background-color: powderblue;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <div>
+        <form action="~/UserTask/ForwardUser" method="post" enctype="multipart/form-data">
+            <div id="dashboardMsgs" style="width:153%">
+                <h1 id="wlcmMsg">Welcome User</h1>
+            </div>
+            <div id="sidebar">
+                <div style="margin-left: 16px">
+                    <label id="lbl" value="Admin User" name="Admin User">User: </label>
+                    @ViewBag.msg <br /><br />
+                </div>
+                @*//<a id="anchor" href="https://www.google.com">Home</a>*@
+                <a id="anchor" href="@Url.Action("User","LogIn")">Home</a>
+                <a id="anchor" href="@Url.Action("Index","Home")">Log Out</a> <br /><br />
+            </div>
+            <div id="ListData">
+                <table class="table" border="1">
+                    <thead>
+                        <tr>
+                            <th>Task Name:</th>
+                            <th>Project Name</th>
+                            <th>Task Description</th>
+                            <th>Task Comments</th>
+                            <th>Files</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Forward To:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (DataRow row in Model.Tables[0].Rows)
+                        {
+                            <tr>
+
+                                <td><input type="text" name="TaskName" value="@row["TaskName"]" readonly /></td>
+                                <td><input type="text" name="ProjectName" value="@row["ProjectName"]" readonly /></td>
+                                <td><input type="text" name="TaskDesc" value="@row["TaskDesc"]" readonly /></td>
+                                <td><input type="text" name="TaskChanges" value="@row["TaskChanges"]" /></td>
+                                <td><input type="file" name="fileUpload" value="" /><a href="@row["TaskAttachment"]">Click Here</a></td>
+                                <td><input type="text" name="StartDate" value="@row["StartDate"]" readonly /></td>
+                                <td><input type="text" name="EndDate" value="@row["EndDate"]" readonly /></td>
+                                <td><input type="text" name="AssignedTo" placeholder="Assign an Employee" value="" /></td>  
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div style="margin-left: 38em; margin-top: 6em;">
+                    <input type="submit" name="name" id="btnsubmit" value="Submit" />
+                </div>
+
+            </div>
+        </form>
+    </div>
+</body>
+</html>

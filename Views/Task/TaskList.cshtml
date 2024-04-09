@@ -1,0 +1,80 @@
+﻿@using System.Data
+@model DataSet
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>TaskList</title>
+    <link href="~/css/Login.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        #NamingTheTask {
+            margin-left: 231px;
+            margin-top: -657px;
+            /* border: 2px solid black; */
+            padding: 20px;
+            text-align: center;
+            background-color: darkgrey;
+            font-family: 'Cambria Math';
+        }
+
+        #ListData {
+            margin-left: 231px;
+            margin-top: -23px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div id="dashboardMsgs"><h1 id="wlcmMsg">Welcome Admin</h1></div>
+        <div id="sidebar">
+            <a id="anchor" href="@Url.Action("Admin", "LogIn")">Home</a>
+            <a id="anchor" href="@Url.Action("Index","Home")">Log Out</a> <br /><br />
+            <p id="project" class="dropdown">Task Page ►</p><br />
+        </div><br />
+        <div id="NamingTheTask"><h1 id="wlcmMsg">Task List</h1></div><br />
+        <div id="ListData">
+            <table class="table table-hover table-strpied" border="1">
+                <thead>
+                    <tr>
+
+                        <th>Task Name</th>
+                        <th>Project Name:</th>
+                        <th>Task Description</th>
+                        <th>Task Changes</th>
+                        <th>Files</th>
+                        <th>Assigned To:</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (DataRow row in Model.Tables[0].Rows)
+                    {
+                        <tr>
+
+                            <td>@row["TaskName"]</td>
+                            <td>@row["ProjectName"]</td>
+                            <td>@row["TaskDesc"]</td>
+                            <td>@row["TaskChanges"]</td>
+                            <td><a href="@row["TaskAttachment"]">Click Here</a></td>
+                            <td>@row["AssignedTo"]</td>
+                            <td>@row["StartDate"]</td>
+                            <td>@row["EndDate"]</td>
+                            <td>
+                                <a href="@Url.Action("EditTask", "Task", new {id = row["TaskID"] })" class="btn btn-primary">Edit</a>
+                                <a href="@Url.Action("DeleteTask", "Task", new { id = row["TaskID"] })" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+
+            </table>
+        </div>
+    </div>
+</body>
+</html>

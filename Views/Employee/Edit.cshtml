@@ -1,0 +1,77 @@
+﻿@using System.Data
+@model DataSet
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EditEmployee</title>
+    <link href="~/css/Login.css" rel="stylesheet" />
+    <style>
+        #EName {
+            margin-left: 397px;
+            margin-top: -2em;
+        }
+
+        #lblEmpName {
+            margin-left: 20em;
+            margin-top: -39em;
+            @*border: 2px solid black;*@
+        }
+
+        #lblEmail {
+            margin-left: 20em;
+            @*margin-top: 9em;*@
+            @*border: 2px solid black;*@
+        }
+        #txtEmail {
+            margin-top: -33px;
+            margin-left: 396px;
+        }
+    </style>
+
+</head>
+<body>
+    <div>
+        <div id="dashboardMsgs"><h1 id="wlcmMsg">Welcome Admin</h1></div>
+        <div id="sidebar">
+            <a id="anchor" href="@Url.Action("Admin", "LogIn")">Home</a>
+            <a id="anchor" href="@Url.Action("Index", "Home")">Log Out</a> <br /><br />
+            <p id="project" class="dropdown">Employee Page ►</p><br />
+        </div><br />
+        @using (Html.BeginForm("PostByRequest", "Employee", FormMethod.Post))
+        {
+
+            <div id="lblEmpName">
+                <label class="label">Employee Name: </label>
+            </div><br />
+            foreach (DataRow row in Model.Tables[0].Rows)
+            {
+                <div id="EName">
+                    <input type="text" name="EmpName" value="@row["EmpName"]" class="textbox" />
+                </div>
+            }
+            <div id="lblEmail">
+                <label class="label">Employee Email: </label>
+            </div><br />
+
+            foreach (DataRow row in Model.Tables[0].Rows)
+            {
+                <div id="txtEmail">
+                    <input type="text" name="EmpEmail" value="@row["EmpEmail"]" class="textbox" />
+                </div>
+
+            }
+            <div style="margin-left: 25em; margin-top: 10em">
+                <input type="submit" name="submit"id="btnsubmit" value="Submit" />
+            </div>
+        }
+
+    </div>
+
+
+</body>
+</html>

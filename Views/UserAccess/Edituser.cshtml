@@ -1,0 +1,127 @@
+﻿@using System.Data
+@model DataSet
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edituser</title>
+    <link href="~/css/Login.css" rel="stylesheet" />
+    <style>
+        #EName {
+            margin-left: 397px;
+            margin-top: -2em;
+        }
+
+        #lblEmpName {
+            margin-left: 20em;
+            margin-top: -39em;
+            @*border: 2px solid black;*@
+        }
+
+        #lblEmail {
+            margin-left: 20em;
+            @*margin-top: 9em;*@
+            @*border: 2px solid black;*@
+        }
+        #txtEmail {
+            margin-top: -33px;
+            margin-left: 396px;
+        }
+        .textbox {
+            background-color: azure;
+        }
+    </style>
+
+
+</head>
+<body>
+    <div>
+        <div id="dashboardMsgs"><h1 id="wlcmMsg">Welcome Admin</h1></div>
+        <div id="sidebar">
+            <a id="anchor" href="@Url.Action("Admin", "LogIn")">Home</a>
+            <a id="anchor" href="@Url.Action("Index", "Home")">Log Out</a> <br /><br />
+            <p id="project" class="dropdown">Users Page ►</p><br />
+        </div><br />
+        <div>
+            @using (Html.BeginForm("EditUserByID", "UserAccess", FormMethod.Post))
+            {
+
+                <div id="lblEmpName">
+                    <label class="label">User Name: </label>
+                </div><br />
+                foreach (DataRow row in Model.Tables[0].Rows)
+                {
+                    <div id="EName">
+                        <input type="text" name="UserName" value="@row["UserName"]" class="textbox" />
+                    </div>
+                }
+                <div id="lblEmail">
+                    <label class="label">User Email: </label>
+                </div><br />
+
+                foreach (DataRow row in Model.Tables[0].Rows)
+                {
+                    <div id="txtEmail">
+                        <input type="text" name="UserEmail" value="@row["UserEmail"]" class="textbox" />
+                    </div>
+
+                }
+                <div id="lblUserPassword" style="margin-left: 20em">
+                    <label class="label">Password: </label>
+                </div><br />
+                foreach (DataRow row in Model.Tables[0].Rows)
+                {
+        <div id="txtUserPassword" style="margin-left: 25em; margin-top: -2em">
+            <input type="password" id="password" name="UserPassword" value="@row["UserPassword"]" class="textbox" />
+            <label for="checkbox">
+                <input type="checkbox" id="checkbox" onchange="togglePasswordVisibility()" />Show Password
+            </label>
+
+
+        </div>
+
+                }
+                <div id="lblUserType" style="margin-left: 20em">
+                    <label class="label">User Type: </label>
+                </div><br />
+                foreach (DataRow row in Model.Tables[0].Rows)
+                {
+                    <div id="txtUserType" style="margin-left: 25em; margin-top: -2em">
+                        <input type="text" name="UserType" value="@row["UserType"]" class="textbox" />
+                    </div>
+
+                }
+                <div id="lblCreationDate" style="margin-left: 20em">
+                    <label class="label">Creation Date </label>
+                </div><br />
+                
+                foreach (DataRow row in Model.Tables[0].Rows)
+                {
+                    <div id="txtCreationDate" style="margin-left: 25em; margin-top: -2em">
+                        <input type="text" name="UserType" value="@row["Created_at"]" class="textbox"/>
+                    </div>
+
+                }
+                <div style="margin-left: 25em; margin-top: 10em">
+                    <input type="submit" name="submit" id="btnsubmit" value="Submit" />
+                </div>
+                
+            }    
+        </div>
+    </div>
+    <script>
+        function togglePasswordVisibility() {
+            var pwd = document.getElementById("password");
+            var check = document.getElementById("checkbox");
+
+            if (check.checked) {
+                pwd.type = "text";
+            } else {
+                pwd.type = "password";
+            }
+        }
+    </script>
+</body>
+</html>

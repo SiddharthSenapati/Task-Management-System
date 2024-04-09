@@ -1,0 +1,58 @@
+﻿@model First_MVC.Models.Employee
+@*@model First_MVC.AlertViewModel*@
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+    <link href="~/css/Login.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="parent">
+        <div id="container">
+            @using (Html.BeginForm("PostByBinding", "LogIn", FormMethod.Post))
+            {
+                @*<img src="\photos\download.jfif" alt="Alternate Text" />*@
+                <h1 class="h1">Task Management System</h1>
+                @Html.LabelFor(x => x.Email, new { @class = "label" })
+                <br />
+                @Html.TextBoxFor(x => x.Email, new { @class = "textbox" })
+                <br />
+                @Html.LabelFor(x => x.Password, new { @class = "label" })<br />
+                @Html.TextBoxFor(x => x.Password, new { @class = "textbox", @type = "password", @id= "password"})
+                <br />
+                <label for="checkbox">
+                    <br />
+                    <input type="checkbox" name="checkbox" id="checkbox" onchange="togglePasswordVisibility()" value="" /> Show Password
+                </label>
+                <div class="forgotPass">
+                    <a href="@Url.Action("Forgot_Password","Home")" class="fgtPwd">Forgot Password?</a>
+                </div>
+
+                <input type="submit" id="btnsubmit" value="login" />
+            }
+        </div>
+    </div>
+    <script>
+        function togglePasswordVisibility() {
+            var pwd = document.getElementById("password");
+            var check = document.getElementById("checkbox");
+
+            check.addEventListener('change', function () {
+                if (check.checked) {
+                    pwd.type = "text";
+                }
+                else {
+                    pwd.type = "password";
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Admin Page</title>
+    <link href="~/css/Login.css" rel="stylesheet" />
+    <style>
+    </style>
+
+</head>
+<body>
+    <div>
+        <div id="dashboardMsgs"><h1 id="wlcmMsg">Welcome Admin</h1></div>
+        <div id="sidebar">
+            <label id="lbl" value="Admin User" name="Admin User">Admin User: </label>
+            <label id="lbl" value="User" name="user"></label>
+            @ViewBag.msg <br /><br />
+            @*//<a id="anchor" href="https://www.google.com">Home</a>*@
+            <a id="anchor" href="@Url.Action("Index","Home")">Log Out</a> <br /><br />
+            <p id="project" class="dropdown">Project ▼</p><br />
+            <p id="Task" class="dropdown">Task ▼</p><br />
+            <p id="Employee" class="dropdown">Employee ▼</p><br />
+            <p id="User" class="dropdown"> User ▼ </p><br />
+            <p id="Client" class="dropdown1">Client </p><br />
+            <p id="ViewReports" class="dropdown">View Reports ▼</p><br />
+        </div><br />
+        <div id="leftDiv">
+            <h1>Involved Projects</h1>
+            <label>Assigned to this employee</label><br /> <br />
+            <a href="@Url.Action("ProjectList","Task")">See Involved Projects</a>
+        </div>
+        <div id="RightDiv">
+            <h1>Individual Tasks</h1>
+            <label>Assigned to this employee</label><br /> <br />
+            <a href="@Url.Action("TaskList","Task")">See Involved Tasks</a>
+        </div>
+        <div class="hoverDiv">
+            <a href="@Url.Action("ProjectAdd","Task")">Create a project</a><br />
+            <a href="@Url.Action("ProjectList","Task")">Edit Project</a><br />
+            <a href="@Url.Action("ProjectList","Task")">Close Project</a>
+        </div>
+
+        <div id="taskDiv" class="hoverDiv">
+            <a href="@Url.Action("Task","Task")">Create a Task</a><br />
+            <a href="@Url.Action("TaskList","Task")">Edit Task</a><br />
+            <a href="@Url.Action("TaskList","Task")">See Tasks</a><br />
+            <a href="#">Close Task</a>
+        </div>
+
+        <div id="empDiv" class="hoverDiv">
+            <a href="@Url.Action("AddEmployee","Employee")">Add an Employee</a><br />
+            <a href="@Url.Action("EmployeeList","Employee")">Edit Employee</a><br />
+            <a href="@Url.Action("EmployeeList","Employee")">Drop an Employee</a>
+        </div>
+        <div id="userDiv" class="hoverDiv">
+            <a href="@Url.Action("AddUser","UserAccess")">Add User</a><br />
+            <a href="@Url.Action("UserList","UserAccess")">See Users</a><br />
+            <a href="@Url.Action("UserList","UserAccess")">Delete User</a><br />
+        </div>
+
+        <div id="viewDiv" class="hoverDiv">
+            <a href="@Url.Action("ShowTextFile","TextFile")">Projects History</a><br />
+            <a href="@Url.Action("ShowTaskHistory","TextFile")">Task History</a><br />
+            <a href="@Url.Action("ShowEmpHistory","TextFile")">Employee History</a><br />
+            <a href="@Url.Action("ShowUserHistory","TextFile")">User History</a><br />
+        </div>
+
+        <script>
+        @*document.addEventListener("DOMContentLoaded", function () {
+
+            var links = document.querySelectorAll(".dropdown");
+            var anchors = document.querySelectorAll(".hoverDiv");
+
+            links.forEach(function (link, index) {
+                link.addEventListener("mouseover", function () {
+                    anchors[index].style.display = "block";
+                    console.log("Mouseover on link " + index);
+                });
+
+                link.addEventListener("mouseleave", function () {
+                    anchors[index].style.display = "none";
+                    console.log("Mouseleave on link " + index);
+                });
+            });
+        });*@
+
+       document.addEventListener("DOMContentLoaded", function () {
+    var links = document.querySelectorAll(".dropdown");
+    var anchors = document.querySelectorAll(".hoverDiv");
+
+    links.forEach(function (link, index) {
+        var anchor = anchors[index];
+
+
+        link.addEventListener("mouseover", function () {
+            anchor.style.display = "block";
+            console.log("Mouseover on link " + index);
+        });
+
+
+        link.addEventListener("mouseleave", function () {
+
+            setTimeout(function () {
+                if (!isMouseOver(anchor)) {
+                    anchor.style.display = "none";
+                    console.log("Mouseleave on link " + index);
+                }
+            }, 100);
+        });
+
+
+        anchor.addEventListener("mouseover", function () {
+            anchor.style.display = "block";
+        });
+
+
+        anchor.addEventListener("mouseleave", function () {
+            anchor.style.display = "none";
+            console.log("Mouseleave on div " + index);
+        });
+
+
+        anchor.querySelectorAll("a").forEach(function (a) {
+            a.addEventListener("click", function (event) {
+                event.stopPropagation(); // Prevents the mouseleave event from triggering
+                console.log("Clicked link " + a.textContent);
+
+            });
+        });
+    });
+
+
+    function isMouseOver(element) {
+        return element.matches(":hover");
+    }
+});
+
+
+        </script>
+
+
+    </div>
+</body>
+</html>

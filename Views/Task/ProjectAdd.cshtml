@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ProjectAdd</title>
+    <link href="~/css/Login.css" rel="stylesheet" />
+    <style>
+        #ProjectName {
+            margin: 20px 20px 20px 20px;
+            /* border: 2px solid black; */
+            width: 29%;
+            margin-left: 398px;
+            margin-top: -642px;
+            font-family: 'Cambria Math';
+        }
+
+        #Pdesc {
+            width: 20%;
+            margin-top: -31px;
+            margin-left: 341px;
+        }
+
+        #txt {
+            margin-top: -16px;
+            width: 471px;
+            height: 80px;
+            margin-left: 402px;
+        }
+
+        .div {
+            margin-top: 11px;
+            margin-left: 400px;
+        }
+        #Pname{
+            margin-top:-1em;
+        }
+        #file {
+            margin-left: 69px;
+            /* border: 2px solid black; */
+            width: 43%;
+            padding: 1px;
+            margin-top: -54px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div>
+        @*@using (Html.BeginForm("PostByForm", "Task", FormMethod.Post))
+        {*@
+        <form action="~/Task/PostByForm" method="post" enctype="multipart/form-data">
+            <div id="dashboardMsgs"><h1 id="wlcmMsg">Welcome Admin</h1></div>
+            <div id="sidebar">
+                <a id="anchor" href="@Url.Action("Admin", "LogIn")">Home</a>
+                <a id="anchor" href="@Url.Action("Index","Home")">Log Out</a> <br /><br />
+                <p id="project" class="dropdown">Project Page ►</p><br />
+            </div><br />
+            @ViewBag.Add
+            @ViewBag.Message
+            <div id="ProjectName">
+                <label for="Pname" class="label">Project Name: </label>
+                <input type="text" name="Pname" id="Pname" class="textbox" />
+            </div>
+            <div id="Pdesc">
+                <label for="PDesc" class="label">Project Description: </label>
+            </div>
+            <div>
+                <textarea id="txt" name="PDesc"></textarea>
+            </div>
+            <div id="TaskStartDate" class="div">
+                <label for="projectStart">Start Date: </label>
+                <input type="date" name="projectStart" id="projectStart" class="textbox1" />
+            </div>
+            <div id="TaskEndDate" class="div">
+                <label for="projectEnd">End Date: </label>
+                <input type="date" name="projectEnd" id="projectEnd" class="textbox1" />
+            </div>
+            <div style="margin-left:320px">
+                <label style="color: black; font-family: math; margin-left: 60px" class="label">Add File: </label>
+            </div>
+            <div id="file">
+                <input type="file" id="fileInput" name="fileUpload" value="" class="div" />
+            </div>
+
+            <div id="btn" style="margin-left: 400px; margin-top: 100px ">
+                <input type="submit" name="btnsubmit" id="btnsubmit" value="Submit" />
+            </div>
+        </form>
+    </div>
+</body>
+</html>

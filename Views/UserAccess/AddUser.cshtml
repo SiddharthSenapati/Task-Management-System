@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddUser</title>
+    <link href="~/css/Login.css" rel="stylesheet" />
+    <style>
+        #EmpName {
+            margin-top: -38em;
+            /* border: 2px solid black; */
+            width: 29%;
+            margin-left: 22em;
+            font-family: 'Cambria Math';
+        }
+
+        #EmpEmail {
+            margin-left: 350px;
+            width: 550px;
+            margin-top: 7px;
+            /* border: 2px solid black; */
+        }
+
+        #type {
+            margin-left: 4em;
+            width: 12em;
+            padding: 8px;
+            text-align: center;
+            font-size: small;
+        }
+
+        #EmpPassword {
+            margin-left: 352px;
+            width: 43%;
+            margin-top: 10px;
+        }
+
+        #ConfirmPassword {
+            margin-left: 352px;
+            width: 43%;
+            margin-top: 10px;
+        }
+        #btnsubmit {
+            margin-left: 38em;
+            margin-top: 3em;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("AddUserRegistration", "UserAccess", FormMethod.Post))
+        {
+
+
+            <div id="dashboardMsgs"><h1 id="wlcmMsg">Welcome Admin</h1></div>
+            <div id="sidebar">
+                <a id="anchor" href="@Url.Action("Admin", "LogIn")">Home</a>
+                <a id="anchor" href="@Url.Action("Index", "Home")">Log Out</a> <br /><br />
+                <p id="project" class="dropdown">User Page ►</p><br />
+            </div><br />
+            @*<div id="NamingTheTask"><h1 id="wlcmMsg">Adding an User</h1></div><br />*@
+            <div id="EmpName">
+                <label for="Pname">User Name: </label>
+                <input type="text" name="UserName" id="Pname" class="textbox" />
+            </div>
+
+            <div id="EmpEmail">
+                <label for="Pname">User Email: </label>
+                <input type="text" name="UserEmail" id="Pname" class="textbox" />
+            </div>
+           
+            <div id="EmpPassword">
+                <label for="Pname">User Password: </label>
+                <input type="password" name="UserPassword" id="UserPassword" class="textbox" />
+                <label for="checkbox">
+                    <br />
+                    <input type="checkbox" name="checkbox" id="checkbox" onchange="togglePasswordVisibility()" />Show Password
+                </label>
+            </div> @ViewBag.Message
+
+            <div id="ConfirmPassword">
+                <label for="Pname">Confirm Password: </label>
+                <input type="text" name="CPassword" id="Pname" class="textbox" />
+            </div>
+            <div id="EmpType" style="margin-left: 492px; width: 580px;margin-top: 1em">
+                <label for="Pname">Employee Type: </label>
+                <select name="Etype" id="type">
+                    <option>---Please Select--</option>
+                    <option value="user">User</option>
+                    <option value="admin">admin</option>
+                </select>
+            </div>
+            <div>
+                <input type="submit" name="name" id="btnsubmit" value="Submit" />
+            </div>
+        }
+    </div>
+    <script>
+        function togglePasswordVisibility() {
+            var pwd = document.getElementById("UserPassword");
+            var check = document.getElementById("checkbox");
+            check.addEventListener('change', function () {
+                if (check.checked) {
+                    pwd.type = "text";
+                }
+                else {
+                    pwd.type = "password";
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+﻿@using System.Data
+@model DataSet
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ForwardedTasks</title>
+    <link href="~/css/Login.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        #NamingTheTask {
+            margin-left: 231px;
+            margin-top: -657px;
+            /* border: 2px solid black; */
+            padding: 20px;
+            text-align: center;
+            background-color: darkgrey;
+            font-family: 'Cambria Math';
+        }
+
+        #ListData {
+            margin-left: 231px;
+            margin-top: -23px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div id="dashboardMsgs"><h1 id="wlcmMsg">Welcome User</h1></div>
+        <div id="sidebar">
+            <a id="anchor" href="@Url.Action("User", "LogIn")">Home</a>
+            <a id="anchor" href="@Url.Action("Index","Home")">Log Out</a> <br /><br />
+            <p id="project" class="dropdown">Task Page ►</p><br />
+        </div><br />
+        <div id="NamingTheTask"><h1 id="wlcmMsg">Task List</h1></div><br />
+        <div id="ListData">
+            <p style="margin-left:29em; color:lightseagreen">Forwarded BY: @ViewBag.EmpName</p>
+            <div id="TaskName" style="margin-left: 12em"><label class="label">Task Name: </label></div><br />
+            @foreach (DataRow row in Model.Tables[0].Rows)
+            {
+                <div id="txtTName" style="margin-left: 17em; margin-top: -2em">
+                    <input type="text" name="TaskName" value="@row["TaskName"]" class="textbox" readonly />
+                </div>
+            }
+            <div id="PName" style="margin-left: 12em"><label class="label">Project Name: </label></div><br />
+            @foreach (DataRow row in Model.Tables[0].Rows)
+            {
+                <div id="lblPName" style="margin-left: 17em; margin-top: -2em">
+                    <input type="text" placeholder="Enter the Project Name that exists in project table" name="ProjectName" value="@row["ProjectName"]" class="textbox" readonly />
+                </div>
+            }
+            <div id="TDesc" style="margin-left: 12em"><label class="label">Task Description: </label></div><br />
+            @foreach (DataRow row in Model.Tables[0].Rows)
+            {
+                <div id="txtTDesc" style="margin-left: 17em; margin-top: -2em">
+                    <input type="text" name="TaskDesc" value="@row["TaskDesc"]" class="textbox" readonly />
+                </div>
+            }
+            <div id="Tchanges" style="margin-left: 12em"><label class="label">Task Comments: </label></div><br />
+            @foreach (DataRow row in Model.Tables[0].Rows)
+            {
+                <div id="txtTchanges" style="margin-left: 17em; margin-top: -2em">
+                    <input type="text" name="TaskChanges" value="@row["TaskChanges"]" class="textbox" readonly />
+                </div>
+            }
+            <div id="TaskAttachment" style="margin-left: 12em"><label class="label">Task Attachment: </label></div><br />
+            @foreach (DataRow row in Model.Tables[0].Rows)
+            {
+                <div id="txtTaskAttachment" style="margin-left: 17em; margin-top: -2em">
+                    @*<input type="file" name="fileUpload" value="" class="textbox" />*@
+                    <a href="@row["filePath"]">content</a>
+                </div>
+            }
+            <div id="StartDate" style="margin-left: 12em"><label class="label">Start Date: </label></div><br />
+            @foreach (DataRow row in Model.Tables[0].Rows)
+            {
+                <div id="txtStartDate" style="margin-left: 17em; margin-top: -2em">
+                    <input type="text" name="StartDate" value="@row["StartDate"]" class="textbox" readonly />
+                </div>
+            }
+            <div id="EndDate" style="margin-left: 12em"><label class="label">End Date: </label></div><br />
+            @foreach (DataRow row in Model.Tables[0].Rows)
+            {
+                <div id="txtEndDate" style="margin-left: 17em; margin-top: -2em">
+                    <input type="text" name="EndDate" value="@row["EndDate"]" class="textbox" />
+                </div>
+            }
+            <div id="EndDate" style="margin-left: 12em"><label class="label">Forwarded Date: </label></div><br />
+            @foreach (DataRow row in Model.Tables[0].Rows)
+            {
+                <div id="txtEndDate" style="margin-left: 17em; margin-top: -2em">
+                    <input type="text" name="EndDate" value="@row["Created_At"]" class="textbox" />
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>

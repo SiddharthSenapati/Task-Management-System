@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddEmployee</title>
+    <link href="~/css/Login.css" rel="stylesheet" />
+    <style>
+        #EmpName {
+            margin: 20px 20px 20px 20px;
+            /* border: 2px solid black; */
+            width: 29%;
+            margin-left: 494px;
+            margin-top: 28px;
+            font-family: 'Cambria Math';
+        }
+
+        #NamingTheTask {
+            margin-left: 231px;
+            margin-top: -650px;
+            /* border: 2px solid black; */
+            padding: 20px;
+            text-align: center;
+            background-color: darkgrey;
+        }
+
+        #type {
+            margin-left: 4em;
+            width: 12em;
+            padding: 8px;
+            text-align: center;
+            font-size: small;
+        }
+    </style>
+</head>
+<body>
+    @using (Html.BeginForm("EmployeeRegistration", "Employee", FormMethod.Post))
+    {
+        <div id="dashboardMsgs"><h1 id="wlcmMsg">Welcome Admin</h1></div>
+        <div id="sidebar">
+            <a id="anchor" href="@Url.Action("Admin", "LogIn")">Home</a>
+            <a id="anchor" href="@Url.Action("Index", "Home")">Log Out</a> <br /><br />
+            <p id="project" class="dropdown">Employee Page ►</p><br />
+        </div><br />
+
+        <div id="NamingTheTask"><h1 id="wlcmMsg">Adding an Employee</h1></div><br />
+
+        <div id="EmpName">
+            <label for="Pname">Employee Name: </label>
+            <input type="text" name="EmpName" id="Pname" class="textbox" />
+        </div>
+
+        <div id="EmpEmail" style="margin-left: 492px; width: 580px">
+            <label for="Pname">Employee Email: </label>
+            <input type="text" name="EmpEmail" id="Pname" class="textbox" />
+        </div>
+
+        <div id="EmpPassword" style="margin-left: 492px; width: 580px;margin-top: 1em">
+            <label>Employee Password</label>
+        </div>
+
+        <div id="txtUserPassword" style="margin-left: 31em; margin-top: 1em">
+            <input type="password" id="password" name="EmpPassword" class="textbox" />
+            <label for="checkbox">
+                <input type="checkbox" id="checkbox" onchange="togglePasswordVisibility()" />Show Password
+            </label>
+        </div>
+
+        <div id="EmpType" style="margin-left: 492px; width: 580px;margin-top: 1em">
+            <label for="Pname">Employee Type: </label>
+            <select name="Etype" id="type">
+                <option>---Please Select--</option>
+                <option value="user">User</option>
+                <option value="admin">admin</option>
+            </select>
+           
+        </div>
+
+        <div style="margin-left: 496px; margin-top: 40px">
+            <input type="submit" name="Add" value="Submit" id="btnsubmit" />
+        </div>
+    }
+
+    <script>
+        function togglePasswordVisibility() {
+            var pwd = document.getElementById("password");
+            var check = document.getElementById("checkbox");
+
+            check.addEventListener('change', function () {
+                if (check.checked) {
+                    pwd.type = "text";
+                }
+                else {
+                    pwd.type = "password";
+                }
+            });
+        }
+    </script>
+</body>
+</html>

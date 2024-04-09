@@ -1,0 +1,147 @@
+﻿@model First_MVC.Models.Project
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Task</title>
+    <link href="~/css/Login.css" rel="stylesheet" />
+    <style>
+        .label1 {
+            color:black;
+            font-family: 'Cambria Math';
+        }
+
+        #Task {
+            width: 19%;
+            margin: -20PX 0px 6px 342px;
+        }
+
+        #txtTask {
+            display: inline;
+        }
+
+        .div {
+            margin-top: 11px;
+            margin-left: 319px
+        }
+
+        #TaskDescription {
+            width: 248px;
+            height: 92px;
+        }
+
+        #txtchangebox {
+            width: 348px;
+            height: 155px;
+        }
+        @*.dropdown1 {
+            color: white;
+            margin: 8px 0;
+            font-family: 'Cambria Math';
+        }*@
+        #TaskName {
+            margin-left: 94px;
+        }
+        #lbltaskname {
+            width: 10px;
+            margin-left: 341px;
+            margin-top: -26px;
+        }
+        #btn {
+            margin-left: 417px;
+            margin-top: 70px;
+        }
+        #ProjectName {
+            margin: 20px 20px 20px 20px;
+            /* border: 2px solid black; */
+            width: 29%;
+            margin-left: 341px;
+            margin-top: -642px;
+            font-family: 'Cambria Math';
+        }
+        #checkboxForwarding {
+            margin-left: 313px;
+            margin-top: 18px;
+            font-family: 'Cambria Math';
+        }
+        #btnsubmit{
+            background-color:slategrey;
+        }
+        #EmpName {
+            margin-left: 490px;
+            margin-top: -22px;
+            display:none;
+        }
+
+    </style>
+</head>
+<body>
+    @*@using (Html.BeginForm("PostByValue", "Task", FormMethod.Post))
+        {*@
+    <form action="~/Task/PostByValue" method="post" enctype="multipart/form-data">
+        <div id="dashboardMsgs"><h1 id="wlcmMsg">Welcome Admin</h1></div>
+        <div id="sidebar">
+            <a id="anchor" href="@Url.Action("Admin", "LogIn")">Home</a>
+            <a id="anchor" href="@Url.Action("Index","Home")">Log Out</a> <br /><br />
+            <p id="project" class="dropdown">Task Page ►</p><br />
+        </div><br />
+        <div id="ProjectName">
+            <label for="ProjectName">Project Name: </label>
+            @Html.DropDownListFor(m => m.ProjectID, Model.Projects, "Please select")
+        </div><br />
+
+
+        <div id="Task" class="div">
+            <label for="TaskName" class="label1">Task Name: </label>
+        </div>
+        <div id="lbltaskname">
+            <input type="text" name="TaskName" id="TaskName" class="textbox1" />
+        </div>
+        <div id="TaskDesx" class="div" style="font-family:'Cambria Math'">
+            <label for="TaskDescription">Task Description: </label>
+            <textarea name="TaskDescription" id="TaskDescription"></textarea>
+        </div>
+        <div id="TaskStartDate" class="div" style="font-family:'Cambria Math'">
+            <label for="projectStart">Start Date: </label>
+            <input type="date" name="projectStart" id="projectStart" class="textbox1" />
+        </div>
+        <div id="TaskEndDate" class="div" style="font-family:'Cambria Math'">
+            <label for="projectEnd">End Date: </label>
+            <input type="date" name="projectEnd" id="projectEnd" class="textbox1" />
+        </div>
+        <div>
+            <textarea id="txtchangebox" name="txtchangebox" placeholder="Enter the recent changes you made" class="div"></textarea>
+        </div>
+        <div>
+            <label style="color: black; font-family: math; margin-left: 316px">Add File: </label>
+            <span id="file" style="margin-left: -315px">
+                <input type="file" id="fileInput" name="fileUpload" value="" class="div" />
+            </span>
+        </div>
+        <div id="checkboxForwarding" >
+            <input type="checkbox" id="checkbox" name="checkbox" value=" :Forward To" /> :Forward To
+        </div>
+        <div id="EmpName" style="font-family:'Cambria Math'">
+            <label for="EmpName">Assign Employee: </label>
+            @Html.DropDownListFor(E => E.EmpID, Model.EmployeesList, "Please select")
+        </div><br />
+        <div id="btn">
+            <input type="submit" name="btnsubmit" id="btnsubmit" value="Submit" />
+        </div>
+    </form>
+
+    <script>
+        let check = document.getElementById("checkbox");
+        var EmpName = document.getElementById("EmpName");
+        check.addEventListener("change", function () {
+            if (this.checked)
+                EmpName.style.display = "block";
+            else
+                EmpName.style.display = "none";
+        });
+    </script>
+
+</body>
+</html>

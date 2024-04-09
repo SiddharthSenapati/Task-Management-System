@@ -1,0 +1,86 @@
+﻿@using System.Data
+@model DataSet
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EditProject</title>
+    <link href="~/css/Login.css" rel="stylesheet" />
+    <style>
+        * {
+            font-family: 'Cambria Math';
+        }
+
+        #NamingTheTask {
+            margin-left: 231px;
+            margin-top: -657px;
+            /* border: 2px solid black; */
+            padding: 20px;
+            text-align: center;
+            background-color: darkgrey;
+            font-family: 'Cambria Math';
+        }
+
+        #ListData {
+            margin-left: 231px;
+            margin-top: -23px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div id="dashboardMsgs"><h1 id="wlcmMsg">Welcome Admin</h1></div>
+        <div id="sidebar">
+            <a id="anchor" href="@Url.Action("Admin", "LogIn")">Home</a>
+            <a id="anchor" href="@Url.Action("Index","Home")">Log Out</a> <br /><br />
+            <p id="project" class="dropdown">Project Page ►</p><br />
+        </div><br />
+        <div id="NamingTheTask"><h1 id="wlcmMsg">Task List</h1></div><br />
+        <div id="lblProjectName" style="margin-left: 12em; margin-top: -2em"><label class="label">Project Name: </label></div><br />
+        <form action="~/Task/EditProjectByID" method="post" enctype="multipart/form-data">
+            @foreach (DataRow row in Model.Tables[0].Rows)
+            {
+                <div id="txtProjectName" style="margin-left: 17em; margin-top: -2em">
+                    <input type="text" name="ProjectName" value="@row["ProjectName"]" class="textbox" />
+                </div>
+            }
+
+            <div id="lblProjectDesc" style="margin-left: 12em"><label class="label">Project Description: </label></div><br />
+            @foreach (DataRow row in Model.Tables[0].Rows)
+            {
+                <div id="txtProjectDesc" style="margin-left: 17em; margin-top: -2em">
+                    <input type="text" name="ProjectDesc" value="@row["ProjectDesc"]" class="textbox" />
+                </div>
+            }
+
+            <div id="lblAttachment" style="margin-left: 12em"><label class="label">files: </label></div><br />
+            @foreach (DataRow row in Model.Tables[0].Rows)
+            {
+                <div id="txtAttachment" style="margin-left: 17em; margin-top: -2em">
+                    <input type="file" name="FileUpload" value="@row["Attachment"]" class="textbox" />
+                </div>
+            }
+            <div id="lblStartDate" style="margin-left: 12em"><label class="label">Start Date: </label></div><br />
+            @foreach (DataRow row in Model.Tables[0].Rows)
+            {
+                <div id="txtStartDate" style="margin-left: 17em; margin-top: -2em">
+                    <input type="date" name="StartDate" value="@row["Project_StartDate"]" class="textbox" />
+                </div>
+            }
+            <div id="lblEndDate" style="margin-left: 12em"><label class="label">Start Date: </label></div><br />
+            @foreach (DataRow row in Model.Tables[0].Rows)
+            {
+                <div id="txtEndDate" style="margin-left: 17em; margin-top: -2em">
+                    <input type="date" name="EndDate" value="@row["Project_EndDate"]" class="textbox" />
+                </div>
+            }
+        <div style="margin-left: 25em; margin-top: 10em">
+            <input type="submit" name="submit" id="btnsubmit" value="Submit" />
+        </div>
+
+        </form>
+    </div>
+</body>
+</html>

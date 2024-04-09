@@ -1,0 +1,77 @@
+﻿@using System.Data
+@model DataSet
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>InvolvedProjects</title>
+    <link href="~/css/Login.css" rel="stylesheet" />
+    <style>
+        #NamingTheTask {
+            margin-left: 231px;
+            margin-top: -651px;
+            /* border: 2px solid black; */
+            padding: 20px;
+            text-align: center;
+            background-color: darkgrey;
+            font-family: 'Cambria Math';
+        }
+
+        #ListData {
+            margin-left: 253px;
+            margin-top: -23px;
+        }
+
+        label {
+            text-decoration: underline;
+        }
+
+        #msg {
+            color: green;
+            font-size: large;
+            margin-left: 10em;
+            margin-top: -3em;
+        }
+    </style>
+</head>
+<body>
+    <div download>
+        <div id="dashboardMsgs"><h1 id="wlcmMsg">Welcome User</h1></div>
+        <div id="sidebar">
+            <a id="anchor" href="@Url.Action("User", "LogIn")">Home</a>
+            <a id="anchor" href="@Url.Action("Index","Home")">Log Out</a> <br /><br />
+            <p id="project" class="dropdown">Involved Project ►</p><br />
+        </div><br />
+        <div id="NamingTheTask"><h1 id="wlcmMsg">Task List</h1></div><br />
+        <div id="ListData">
+            @*<table class="table table-hover table-strpied" border="1">*@
+            @*<thead>
+            <tr>*@
+            <div id="lblTname">
+                <label class="label">Task Name</label>
+            </div>
+            <div id="msg"><label class="label">Assigned By:  @ViewBag.Name</label></div>
+
+
+
+            <div id="txtTname">
+                @foreach (DataRow row in Model.Tables[0].Rows)
+                {
+                    <input type="text" name="txtTaskName" class="textbox" value="@row["TaskName"]" readonly />
+                }
+            </div>
+            <div id="lblPname">
+                <label class="label">Project Name:</label>
+            </div>
+            <div id="txtPname">
+                @foreach (DataRow row in Model.Tables[0].Rows)
+                {
+                    <input type="text" name="txtProjectName" class="textbox" value="@row["ProjectName"]" readonly />
+                }
+            </div>
+        </div>
+    </div>
+</body>
+</html>

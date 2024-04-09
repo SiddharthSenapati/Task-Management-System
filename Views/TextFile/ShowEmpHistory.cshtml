@@ -1,0 +1,81 @@
+﻿@model IEnumerable<First_MVC.Models.LogEmp>
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ShowEmpHistory</title>
+    <link href="~/css/Login.css" rel="stylesheet" />
+    <style>
+        #NamingTheTask {
+            margin-left: 231px;
+            margin-top: -651px;
+            /* border: 2px solid black; */
+            padding: 20px;
+            text-align: center;
+            background-color: darkgrey;
+            font-family: 'Cambria Math';
+        }
+
+        #ListData {
+            margin-left: 231px;
+            margin-top: -23px;
+        }
+
+        #projectHistory {
+            background-color: powderblue;
+            margin-left: 231px;
+            margin-top: -17px;
+            padding: 12px;
+            font-size: large;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            align-items: stretch;
+            text-align: center;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+<body>
+    <div>
+        <div id="dashboardMsgs"><h1 id="wlcmMsg">Welcome Admin</h1></div>
+        <div id="sidebar">
+            <a id="anchor" href="@Url.Action("Admin", "LogIn")">Home</a>
+            <a id="anchor" href="@Url.Action("Index","Home")">Log Out</a> <br /><br />
+            <p id="project" class="dropdown">Employee History►</p><br />
+        </div><br />
+        <div id="NamingTheTask"><h1 id="wlcmMsg">Employee History</h1></div><br />
+        <div id="projectHistory">
+            <table border="2">
+                <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        @*<th>Action</th>*@
+                        <th>Employee Name</th>
+                        @*<th>User ID</th>*@
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var record in Model)
+                    {
+                        <tr>
+                            <td>@record.TimeStamp.ToString("MM/dd/yyyy hh:mm:ss tt")</td>
+                            @*<td>@record.Action</td>*@
+                            <td>@record.content</td>
+                            @*<td>@(record.EmployeeID.HasValue ? record.EmployeeID.ToString() : "")</td>*@
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+
+
+    </div>
+</body>
+</html>
